@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { fetchMovies } from '../../apiCalls';
 import { setMovies } from '../../actions';
 import { connect } from 'react-redux';
+import MovieCard from '../MovieCard/MovieCard';
+import './MovieGallery.css';
 
 class MovieGallery extends Component {
   constructor(props) {
@@ -14,15 +16,18 @@ class MovieGallery extends Component {
   componentDidMount = async () => {
     let movies = await fetchMovies(); 
     this.props.setMovies(movies);
-    this.setState({movies})
   } 
-  
+
+  displayMovies = this.props.movies.map(movie =>{
+    return <MovieCard moviePoster={movie.poster_path}/>
+  })
+
   render() {
+  
     return (
-      <div>Hello</div>
+      <div className="movie-field">{this.displayMovies}</div>
     )
   }
-
 }
 
 const mapStateToProps = (state) => ({
