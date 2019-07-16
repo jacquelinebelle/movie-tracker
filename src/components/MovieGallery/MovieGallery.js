@@ -4,8 +4,8 @@ import { setMovies } from '../../actions';
 import { connect } from 'react-redux';
 
 class MovieGallery extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       movies: []
     }
@@ -13,8 +13,8 @@ class MovieGallery extends Component {
 
   componentDidMount = async () => {
     let movies = await fetchMovies(); 
-    setMovies(movies);
-    this.setState({movies})
+    this.props.setMovies(movies);
+    // this.setState({movies})
   } 
   
   render() {
