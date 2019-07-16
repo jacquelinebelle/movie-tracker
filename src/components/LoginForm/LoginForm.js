@@ -27,7 +27,7 @@ class LoginForm extends Component {
             let user = await userLogin('http://localhost:3000/api/users', options)
             this.props.setLoggedInUser(user.data)
             this.setState({ isLoggedIn: true })
-            this.setState({error: ''})
+            this.setState({ error: '' })
         } catch (error) {
             this.setState({ error: error.message })
         }
