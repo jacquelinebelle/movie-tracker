@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { userLogin } from '../../apiCalls';
+import { setLoggedInUser } from '../../actions';
 import './LoginForm.scss';
 
 class LoginForm extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             email: '',
             password: '',
@@ -16,20 +17,19 @@ class LoginForm extends Component {
     }
 
     handleChange = (e) => {
-        this.setState({[e.target.name]: e.target.value})
+        this.setState({ [e.target.name]: e.target.value })
     }
 
     handleSubmit = async (e) => {
         e.preventDefault();
-        let options =  {email: this.state.email, password: this.state.password}
+        let options = { email: this.state.email, password: this.state.password }
         try {
-          let user = await userLogin('http://localhost:3000/api/users', options)
-          await this.setState({ user: user.data })
-          this.setState({ isLoggedIn: true })
-        } catch(error) {
-          this.setState({error: error.message})
+            let user = await userLogin('http://localhost:3000/api/users', options)
+            this.props.setLoggedInUser(user.data)
+            this.setState({ isLoggedIn: true })
+        } catch (error) {
+            this.setState({ error: error.message })
         }
-
     }
 
     render() {
@@ -54,10 +54,11 @@ class LoginForm extends Component {
     }
 }
 
-const mapDispatchToProps = dispatch => ( {
-    handleSubmit: () => dispatch( this.setState(this.state.isLoggedIn) )
-  } )
-  const mapStateToProps = ( state ) => ( {
+const mapDispatchToProps = dispatch => ({
+    handleSubmit: () => dispatch(this.setState(this.state.isLoggedIn)),
+    setLoggedInUser: (user) => dispatch(setLoggedInUser(user))
+})
+const mapStateToProps = (state) => ({
     isLoggedIn: state.isLoggedIn
-  } )
-export default connect( mapStateToProps, mapDispatchToProps )( LoginForm )
+})
+export default connect(mapStateToProps, mapDispatchToProps)(LoginForm)
