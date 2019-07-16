@@ -26,6 +26,7 @@ class SignUpForm extends Component {
         }
         try {
           const postNewUser = await fetchNewUser('http://localhost:3000/api/users/new', newUser)
+          this.setState({error: ''})
         } catch(error) {
           this.setState({error: error.message})
         }
@@ -42,7 +43,6 @@ class SignUpForm extends Component {
     render() {
         return (
             <>
-            {this.state.error && <p>{this.state.error}</p>}
                 <h2>Create An Account :)</h2>
                 <form>
                     <label htmlFor="name-input">Name:</label>
@@ -62,6 +62,7 @@ class SignUpForm extends Component {
                         onChange={this.handleChange} />
                     <button onClick={this.handleSubmit}>Submit</button>
                 </form>
+            {this.state.error && <h2>{this.state.error}</h2>}
             </>
         )
     }
