@@ -1,10 +1,16 @@
 import React from 'react';
+import { Switch, Route } from 'react-router-dom';
 import MovieGallery from '../MovieGallery/MovieGallery';
+import NavBar from '../NavBar/NavBar';
+
 
 function App() {
   return (
     <div className="App">
-      <MovieGallery />
+      <NavBar />
+      <Switch>
+        <Route exact path='/' render={() => <MovieGallery />} />
+      </Switch>
     </div>
   );
 }
