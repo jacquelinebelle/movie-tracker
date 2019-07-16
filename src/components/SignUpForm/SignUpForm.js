@@ -23,7 +23,7 @@ class SignUpForm extends Component {
             email: this.state.email,
             password: this.state.password
         }
-        const postNewUser = await fetchNewUser('https://localhost:3000/api/users/new', newUser)
+        const postNewUser = await fetchNewUser('http://localhost:3000/api/users/new', newUser)
         // await this.setState(postNewUser)
         await console.log(postNewUser);
     }
