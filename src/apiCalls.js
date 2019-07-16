@@ -12,3 +12,25 @@ export const fetchMovies = async () => {
   }
 }
 
+export const fetchNewUser = async (url, newUser) => {
+  try {
+    // const options = {
+    //   method: 'POST',
+    //   headers: {'Content-Type': 'application/json'},
+    //   body: JSON.stringify({...newUser})
+    // }
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(newUser)
+    })
+    if(!response.ok){
+      throw new Error('Error fetching new user')
+    } 
+    const user = await response.json()
+    return user;
+  }
+  catch(error){
+    throw new Error(error.message)
+  }
+}
