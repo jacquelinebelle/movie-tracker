@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
-import { fetchNewUser } from '../../apiCalls';
-import './SignUpForm.css';
+import { connect } from 'react-redux';
+import './LoginForm.scss';
 
-class SignUpForm extends Component {
+class LoginForm extends Component {
     constructor() {
         super();
         this.state = {
-            name: '',
             email: '',
-            password: ''
+            password: '',
+            isLoggedIn: false
         }
     }
 
@@ -18,26 +18,15 @@ class SignUpForm extends Component {
 
     handleSubmit = async (e) => {
         e.preventDefault();
-        const newUser = {
-            name: this.state.name,
-            email: this.state.email,
-            password: this.state.password
-        }
-        const postNewUser = await fetchNewUser('http://localhost:3000/api/users/new', newUser)
-        // await this.setState(postNewUser)
-        await console.log(postNewUser);
+        this.setState({ isLoggedIn: true })
+        // something to validate password
     }
 
     render() {
         return (
             <>
-                <h2>Create An Account :)</h2>
+                <h2>Log Into Your Account :)</h2>
                 <form>
-                    <label htmlFor="name-input">Name:</label>
-                    <input type="text" placeholder="Name"
-                        name='name'
-                        value={this.state.name}
-                        onChange={this.handleChange} />
                     <label htmlFor="email-input">Email:</label>
                     <input type="text" placeholder="Email"
                         name='email'
@@ -55,4 +44,10 @@ class SignUpForm extends Component {
     }
 }
 
-export default SignUpForm;
+const mapDispatchToProps = dispatch => ( {
+    handleSubmit: () => dispatch( this.setState(this.state.isLoggedIn) )
+  } )
+  const mapStateToProps = ( state ) => ( {
+    isLoggedIn: state.isLoggedIn
+  } )
+export default connect( mapStateToProps, mapDispatchToProps )( LoginForm )
