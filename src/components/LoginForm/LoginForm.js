@@ -27,9 +27,18 @@ class LoginForm extends Component {
             let user = await userLogin('http://localhost:3000/api/users', options)
             this.props.setLoggedInUser(user.data)
             this.setState({ isLoggedIn: true })
+            this.setState({error: ''})
         } catch (error) {
             this.setState({ error: error.message })
         }
+        this.clearInputs();
+    }
+
+    clearInputs = () => {
+        this.setState({
+            email: '',
+            password: ''
+        })
     }
 
     render() {
@@ -49,6 +58,7 @@ class LoginForm extends Component {
                         onChange={this.handleChange} />
                     <button onClick={this.handleSubmit}>Submit</button>
                 </form>
+                {this.state.error && <h2>Email and Password do not match</h2>}
             </>
         )
     }
