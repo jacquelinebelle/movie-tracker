@@ -14,7 +14,6 @@ class MovieGallery extends Component {
   }
 
   componentDidMount = async () => {
-    // console.log('hey')
     let movies = await fetchMovies(); 
     this.props.setMovies(movies);
   }

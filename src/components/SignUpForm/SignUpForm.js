@@ -8,7 +8,8 @@ class SignUpForm extends Component {
         this.state = {
             name: '',
             email: '',
-            password: ''
+            password: '',
+            error: ''
         }
     }
 
@@ -23,14 +24,25 @@ class SignUpForm extends Component {
             email: this.state.email,
             password: this.state.password
         }
-        const postNewUser = await fetchNewUser('http://localhost:3000/api/users/new', newUser)
-        // await this.setState(postNewUser)
-        await console.log(postNewUser);
+        try {
+          const postNewUser = await fetchNewUser('http://localhost:3000/api/users/new', newUser)
+        } catch(error) {
+          this.setState({error: error.message})
+        }
+        this.clearInputs()
+    }
+    clearInputs = () => {
+      this.setState({
+        name: '',
+        email: '',
+        password: ''
+      })
     }
 
     render() {
         return (
             <>
+            {this.state.error && <p>{this.state.error}</p>}
                 <h2>Create An Account :)</h2>
                 <form>
                     <label htmlFor="name-input">Name:</label>

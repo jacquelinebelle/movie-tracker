@@ -14,18 +14,15 @@ export const fetchMovies = async () => {
 
 export const fetchNewUser = async (url, newUser) => {
   try {
-    // const options = {
-    //   method: 'POST',
-    //   headers: {'Content-Type': 'application/json'},
-    //   body: JSON.stringify({...newUser})
-    // }
-    const response = await fetch(url, {
+    const options = {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify(newUser)
-    })
+    }
+    const response = await fetch(url, options)
     if(!response.ok){
-      throw new Error('Error fetching new user')
+      console.log(response)
+      throw new Error('User already added')
     } 
     const user = await response.json()
     return user;
@@ -34,3 +31,21 @@ export const fetchNewUser = async (url, newUser) => {
     throw new Error(error.message)
   }
 }
+
+export const userLogin = async (url, newUser) => {
+  try {
+    const options = {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(newUser)
+    }
+    const response = await fetch(url, options)
+    if(!response.ok){
+      throw new Error('Incorrect Password')
+    } 
+    const user = await response.json()
+    return user;
+  }
+  catch(error){
+    throw new Error(error.message)
+  }}

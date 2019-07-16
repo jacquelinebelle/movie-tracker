@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { userLogin } from '../../apiCalls';
 import './LoginForm.scss';
 
 class LoginForm extends Component {
@@ -8,7 +9,9 @@ class LoginForm extends Component {
         this.state = {
             email: '',
             password: '',
-            isLoggedIn: false
+            isLoggedIn: false,
+            error: '',
+            user: ''
         }
     }
 
@@ -18,8 +21,15 @@ class LoginForm extends Component {
 
     handleSubmit = async (e) => {
         e.preventDefault();
-        this.setState({ isLoggedIn: true })
-        // something to validate password
+        let options =  {email: this.state.email, password: this.state.password}
+        try {
+          let user = await userLogin('http://localhost:3000/api/users', options)
+          await this.setState({ user: user.data })
+          this.setState({ isLoggedIn: true })
+        } catch(error) {
+          this.setState({error: error.message})
+        }
+
     }
 
     render() {
