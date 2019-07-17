@@ -1,21 +1,19 @@
 import React, { Component } from 'react';
-import { Route, Redirect } from 'react-router'
 import { connect } from 'react-redux';
-import { fetchNewUser } from '../../apiCalls';
 import { userLogin } from '../../apiCalls';
 import { setLoggedInUser } from '../../actions';
-import CustomForm from '../Shared/CustomForm'
-import './SignUpForm.css';
+import './LoginForm.scss';
+import CustomForm from '../../components/Shared/CustomForm';
 
-class SignUpForm extends Component {
-    constructor() {
-        super();
+export class LoginForm extends Component {
+    constructor(props) {
+        super(props);
         this.state = {
-            name: '',
             email: '',
             password: '',
             isLoggedIn: false,
-            error: ''
+            error: '',
+            user: ''
         }
     }
 
@@ -25,14 +23,8 @@ class SignUpForm extends Component {
 
     handleSubmit = async (e) => {
         e.preventDefault();
-        const newUser = {
-            name: this.state.name,
-            email: this.state.email,
-            password: this.state.password
-        }
+        let options = { email: this.state.email, password: this.state.password }
         try {
-            const postNewUser = await fetchNewUser('http://localhost:3000/api/users/new', newUser)
-            let options = { email: this.state.email, password: this.state.password }
             let user = await userLogin('http://localhost:3000/api/users', options)
             this.props.setLoggedInUser(user.data)
             this.setState({ isLoggedIn: true })
@@ -40,12 +32,11 @@ class SignUpForm extends Component {
         } catch (error) {
             this.setState({ error: error.message })
         }
-        this.clearInputs()
+        this.clearInputs();
     }
-    
+
     clearInputs = () => {
         this.setState({
-            name: '',
             email: '',
             password: ''
         })
@@ -55,13 +46,8 @@ class SignUpForm extends Component {
         return (
             <>
                 <CustomForm 
-                    title={'Create an Account :)'}
+                    title={'Log Into Your Account :)'}
                     formFields={[
-                        {
-                            type: 'name',
-                            value: this.state.name,
-                            onChange: this.handleChange,
-                        },
                         {
                             type: 'email',
                             value: this.state.email,
@@ -85,11 +71,12 @@ class SignUpForm extends Component {
     }
 }
 
-const mapDispatchToProps = dispatch => ({
-    handleSubmit: () => dispatch(this.setState(this.state.isLoggedIn)),
-    setLoggedInUser: (user) => dispatch(setLoggedInUser(user))
-})
-const mapStateToProps = (state) => ({
+export const mapStateToProps = state => ({
     isLoggedIn: state.isLoggedIn
 })
-export default connect(mapStateToProps, mapDispatchToProps)(SignUpForm)
+
+export const mapDispatchToProps = dispatch => ({
+    handleSubmit: user => dispatch(setLoggedInUser(user))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoginForm)
