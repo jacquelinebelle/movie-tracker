@@ -1,0 +1,10 @@
+.nav-bar {
+    display: flex;
+    font-size: 20px;
+    height: 100px;
+    justify-content: space-around;
+}
+
+.link {
+    margin: 20px;
+}

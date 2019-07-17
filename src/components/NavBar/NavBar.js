@@ -8,10 +8,10 @@ const NavBar = (props) => {
 
     return (
         <nav className="nav-bar">
-            <NavLink to='/'>Home</NavLink>
-            <NavLink to='/login'>Login</NavLink>
-            <NavLink to='/create-account'>Create A New Account</NavLink>
-            <NavLink to='/favorites'>Favorites</NavLink>
+            <NavLink className="link" to='/'>Home</NavLink>
+            <NavLink className="link" to='/login'>Login</NavLink>
+            <NavLink className="link" to='/create-account'>Create A New Account</NavLink>
+            <NavLink className="link" to='/favorites'>Favorites</NavLink>
             {props.user.name && <button onClick={() => props.signOutUser({})}>Sign out</button>}
         </nav>
     )
