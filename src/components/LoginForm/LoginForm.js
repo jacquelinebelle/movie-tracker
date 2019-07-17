@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Route, Redirect } from 'react-router'
 import { userLogin } from '../../apiCalls';
 import { setLoggedInUser } from '../../actions';
 import './LoginForm.scss';
@@ -57,6 +58,7 @@ class LoginForm extends Component {
                         value={this.state.password}
                         onChange={this.handleChange} />
                     <button onClick={this.handleSubmit}>Submit</button>
+                    {this.state.isLoggedIn && <Redirect to="/" />}
                 </form>
                 {this.state.error && <h2>Email and Password do not match</h2>}
             </>

@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
+import { Route, Redirect } from 'react-router'
+import { connect } from 'react-redux';
 import { fetchNewUser } from '../../apiCalls';
+import { userLogin } from '../../apiCalls';
+import { setLoggedInUser } from '../../actions';
 import './SignUpForm.css';
 
 class SignUpForm extends Component {
@@ -9,6 +13,7 @@ class SignUpForm extends Component {
             name: '',
             email: '',
             password: '',
+            isLoggedIn: false,
             error: ''
         }
     }
@@ -26,6 +31,10 @@ class SignUpForm extends Component {
         }
         try {
             const postNewUser = await fetchNewUser('http://localhost:3000/api/users/new', newUser)
+            let options = { email: this.state.email, password: this.state.password }
+            let user = await userLogin('http://localhost:3000/api/users', options)
+            this.props.setLoggedInUser(user.data)
+            this.setState({ isLoggedIn: true })
             this.setState({ error: '' })
         } catch (error) {
             this.setState({ error: error.message })
@@ -61,6 +70,7 @@ class SignUpForm extends Component {
                         value={this.state.password}
                         onChange={this.handleChange} />
                     <button onClick={this.handleSubmit}>Submit</button>
+                    {this.state.isLoggedIn && <Redirect to="/" />}
                 </form>
                 {this.state.error && <h2>{this.state.error}</h2>}
             </>
@@ -68,4 +78,11 @@ class SignUpForm extends Component {
     }
 }
 
-export default SignUpForm;
+const mapDispatchToProps = dispatch => ({
+    handleSubmit: () => dispatch(this.setState(this.state.isLoggedIn)),
+    setLoggedInUser: (user) => dispatch(setLoggedInUser(user))
+})
+const mapStateToProps = (state) => ({
+    isLoggedIn: state.isLoggedIn
+})
+export default connect(mapStateToProps, mapDispatchToProps)(SignUpForm)
