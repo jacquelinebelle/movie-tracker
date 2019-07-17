@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Route, Redirect } from 'react-router'
 import { userLogin } from '../../apiCalls';
 import { setLoggedInUser } from '../../actions';
 import './LoginForm.scss';
+import CustomForm from '../Shared/CustomForm';
 
 class LoginForm extends Component {
     constructor(props) {
@@ -45,22 +45,27 @@ class LoginForm extends Component {
     render() {
         return (
             <>
-                <h2>Log Into Your Account :)</h2>
-                <form>
-                    <label htmlFor="email-input">Email:</label>
-                    <input type="text" placeholder="Email"
-                        name='email'
-                        value={this.state.email}
-                        onChange={this.handleChange} />
-                    <label htmlFor="password-input">Password:</label>
-                    <input type="text" placeholder="Password"
-                        name='password'
-                        value={this.state.password}
-                        onChange={this.handleChange} />
-                    <button onClick={this.handleSubmit}>Submit</button>
-                    {this.state.isLoggedIn && <Redirect to="/" />}
-                </form>
-                {this.state.error && <h2>Email and Password do not match</h2>}
+                <CustomForm 
+                    title={'Log Into Your Account :)'}
+                    formFields={[
+                        {
+                            type: 'email',
+                            value: this.state.email,
+                            onChange: this.handleChange,
+                        },
+                        {
+                            type: 'password',
+                            value: this.state.password,
+                            // onChange: this.handleChange
+                        }
+                    ]}
+                    onSubmit={this.handleSubmit}
+                    isLoggedIn={this.state.isLoggedIn}
+                    error={
+                        {isError: this.state.error,
+                        message: 'Email and password don\'t match'}
+                    }   
+                />
             </>
         )
     }

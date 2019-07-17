@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { fetchNewUser } from '../../apiCalls';
 import { userLogin } from '../../apiCalls';
 import { setLoggedInUser } from '../../actions';
+import CustomForm from '../Shared/CustomForm'
 import './SignUpForm.css';
 
 class SignUpForm extends Component {
@@ -41,6 +42,7 @@ class SignUpForm extends Component {
         }
         this.clearInputs()
     }
+    
     clearInputs = () => {
         this.setState({
             name: '',
@@ -52,27 +54,32 @@ class SignUpForm extends Component {
     render() {
         return (
             <>
-                <h2>Create An Account :)</h2>
-                <form>
-                    <label htmlFor="name-input">Name:</label>
-                    <input type="text" placeholder="Name"
-                        name='name'
-                        value={this.state.name}
-                        onChange={this.handleChange} />
-                    <label htmlFor="email-input">Email:</label>
-                    <input type="text" placeholder="Email"
-                        name='email'
-                        value={this.state.email}
-                        onChange={this.handleChange} />
-                    <label htmlFor="password-input">Password:</label>
-                    <input type="text" placeholder="Password"
-                        name='password'
-                        value={this.state.password}
-                        onChange={this.handleChange} />
-                    <button onClick={this.handleSubmit}>Submit</button>
-                    {this.state.isLoggedIn && <Redirect to="/" />}
-                </form>
-                {this.state.error && <h2>{this.state.error}</h2>}
+                <CustomForm 
+                    title={'Create an Account :)'}
+                    formFields={[
+                        {
+                            type: 'name',
+                            value: this.state.name,
+                            onChange: this.handleChange,
+                        },
+                        {
+                            type: 'email',
+                            value: this.state.email,
+                            onChange: this.handleChange,
+                        },
+                        {
+                            type: 'password',
+                            value: this.state.password,
+                            onChange: this.handleChange
+                        }
+                    ]}
+                    onSubmit={this.handleSubmit}
+                    isLoggedIn={this.state.isLoggedIn}
+                    error={
+                        {isError: this.state.error,
+                        message: 'Email and password don\'t match'}
+                    }   
+                />
             </>
         )
     }
