@@ -76,7 +76,7 @@ class SignUpForm extends Component {
                     isLoggedIn={this.state.isLoggedIn}
                     error={
                         {isError: this.state.error,
-                        message: 'Email and password don\'t match'}
+                        message: 'Error signing up'}
                     }   
                 />
             </>

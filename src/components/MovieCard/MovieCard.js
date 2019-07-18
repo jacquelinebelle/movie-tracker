@@ -17,8 +17,6 @@ class MovieCard extends Component {
       this.setState({redirect:!this.state.redirect})
     }
    }
-
-  
   
   render() {
     return (
