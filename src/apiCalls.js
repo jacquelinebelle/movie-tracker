@@ -9,7 +9,7 @@ export const fetchMovies = async () => {
   }
   catch (error) {
     throw new Error(error.message)
-  }
+  } 
 }
 
 export const fetchNewUser = async (url, newUser) => {

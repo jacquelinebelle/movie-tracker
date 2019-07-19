@@ -29,7 +29,7 @@ export class LoginForm extends Component {
             await console.log(user)
             this.props.setLoggedInUser(user.data)
             let favorites = await fetch(`http://localhost:3000/api/users/${user.data.id}/favorites`)
-            await this.props.getFavorites(favorites)
+            await this.props.getFavorites(favorites) 
             this.setState({ isLoggedIn: true })
             this.setState({ error: '' })
         } catch (error) {

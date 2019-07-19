@@ -66,7 +66,7 @@ class SignUpForm extends Component {
                             value: this.state.email,
                             onChange: this.handleChange,
                         },
-                        {
+                        { 
                             type: 'password',
                             value: this.state.password,
                             onChange: this.handleChange

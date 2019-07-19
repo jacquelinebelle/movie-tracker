@@ -28,7 +28,7 @@ class MovieGallery extends Component {
       voteAverage={movie.vote_average}
       overview={movie.overview}
       />
-    })
+    }) 
   }
 
   

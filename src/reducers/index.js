@@ -9,4 +9,4 @@ const rootReducer = combineReducers({
    favorites: getFavoritesReducer
 });
 
-export default rootReducer;
+export default rootReducer; 

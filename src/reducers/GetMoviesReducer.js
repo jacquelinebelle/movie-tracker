@@ -6,3 +6,4 @@ export const GetMoviesReducer = (state = [], action) => {
       return state
   }
 }
+ 

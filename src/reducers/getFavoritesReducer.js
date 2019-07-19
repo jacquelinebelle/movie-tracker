@@ -7,4 +7,4 @@ export const getFavoritesReducer = (state=[], action) => {
     default:
       return state
   }
-}
+}  

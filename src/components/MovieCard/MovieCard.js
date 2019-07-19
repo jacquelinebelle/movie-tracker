@@ -37,7 +37,7 @@ class MovieCard extends Component {
       } catch (error) {
         console.log(error)
       }
-    }
+    } 
    }
   
   render() {
@@ -59,5 +59,5 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   getFavorites: movie => dispatch(getFavorites(movie))
 })
-
+ 
 export default connect(mapStateToProps, mapDispatchToProps)(MovieCard)
