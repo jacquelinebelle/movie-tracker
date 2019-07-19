@@ -6,8 +6,8 @@ import { fetchAddFavorite } from '../../apiCalls';
 import './MovieCard.css';
 
 class MovieCard extends Component {
-  constructor({moviePoster, movieId, title, releaseDate, voteAverage, overview, user}){
-    super({moviePoster, movieId, title, releaseDate, voteAverage, overview, user});
+  constructor({moviePoster, id, title, releaseDate, voteAverage, overview, user}){
+    super({moviePoster, id, title, releaseDate, voteAverage, overview, user});
     this.state = {
       url: 'http://image.tmdb.org/t/p/w154',
       redirect: false,
@@ -17,7 +17,7 @@ class MovieCard extends Component {
 
   clickFav = async () => { 
     const movieObject =  {
-      movie_id: this.props.movieId,
+      movie_id: this.props.id,
       user_id: this.props.user.id,
       title: this.props.title,
       poster_path: this.props.moviePoster,
