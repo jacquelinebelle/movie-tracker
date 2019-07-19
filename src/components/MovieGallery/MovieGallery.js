@@ -3,6 +3,7 @@ import { fetchMovies } from '../../apiCalls';
 import { setMovies } from '../../actions';
 import { connect } from 'react-redux';
 import MovieCard from '../MovieCard/MovieCard';
+import {Link } from 'react-router-dom'
 import './MovieGallery.css';
 
 class MovieGallery extends Component {
@@ -15,15 +16,17 @@ class MovieGallery extends Component {
   
   displayMovies = () => {
     return this.props.movies.map(movie =>{
-      return <MovieCard 
+      return  <Link to={`/movies/${movie.id}`}>
+      <MovieCard 
       moviePoster={movie.moviePoster} 
-      movieId={movie.id} 
+      id={movie.id} 
       title={movie.title}
       releaseDate={movie.releaseDate}
       voteAverage={movie.voteAverage}
       overview={movie.overview}
       genres={movie.genres}
       />
+      </Link>
     }) 
   }
 
