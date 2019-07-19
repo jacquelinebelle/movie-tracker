@@ -10,7 +10,8 @@ class MovieCard extends Component {
     super({moviePoster, movieId, title, releaseDate, voteAverage, overview, user});
     this.state = {
       url: 'http://image.tmdb.org/t/p/w154',
-      redirect: false
+      redirect: false,
+      favorite: false
     }
   }
 
