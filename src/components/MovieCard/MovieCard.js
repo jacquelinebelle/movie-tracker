@@ -24,16 +24,14 @@ class MovieCard extends Component {
       vote_average: this.props.voteAverage,
       overview: this.props.overview
     } 
-    console.log(movieObject)
-
     if(!this.props.user.name){
       this.setState({redirect:!this.state.redirect})
     } else {
       try {
         await fetchAddFavorite('http://localhost:3000/api/users/favorites/new', movieObject)
-        let movie = await fetch(`http://localhost:3000/api/users/${this.props.user.id}/favorites`)
-        console.log("MOVIE", movie)
-        await this.props.getFavorites(movie);
+        let res = await fetch(`http://localhost:3000/api/users/${this.props.user.id}/favorites`)
+        let movie = await res.json()
+        await this.props.getFavorites(movie.data);
       } catch (error) {
         console.log(error)
       }
