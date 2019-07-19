@@ -15,9 +15,9 @@ const CustomForm = ({ title, formFields, onSubmit, isLoggedIn, error }) => {
                     onChange={field.onChange} />
             </>
         )
-    })
+    }) 
 
-    return(
+    return( 
         <>
             <h2>{title}</h2>
             <form>

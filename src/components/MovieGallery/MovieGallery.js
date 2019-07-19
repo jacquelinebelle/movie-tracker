@@ -12,16 +12,19 @@ class MovieGallery extends Component {
       movies: []
     }
   }
-
-  componentDidMount = async () => {
-    let movies = await fetchMovies(); 
-    this.props.setMovies(movies);
-  }
   
   displayMovies = () => {
     return this.props.movies.map(movie =>{
-      return <MovieCard moviePoster={movie.poster_path}/>
-    })
+      return <MovieCard 
+      moviePoster={movie.moviePoster} 
+      movieId={movie.id} 
+      title={movie.title}
+      releaseDate={movie.releaseDate}
+      voteAverage={movie.voteAverage}
+      overview={movie.overview}
+      genres={movie.genres}
+      />
+    }) 
   }
 
   

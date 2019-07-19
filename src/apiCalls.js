@@ -9,7 +9,7 @@ export const fetchMovies = async () => {
   }
   catch (error) {
     throw new Error(error.message)
-  }
+  } 
 }
 
 export const fetchNewUser = async (url, newUser) => {
@@ -42,6 +42,25 @@ export const userLogin = async (url, newUser) => {
     const response = await fetch(url, options)
     if (!response.ok) {
       throw new Error('Incorrect Password')
+    }
+    const user = await response.json()
+    return user;
+  }
+  catch (error) {
+    throw new Error(error.message)
+  }
+}
+
+export const fetchAddFavorite = async (url, movieObject) => {
+  try {
+    const options = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(movieObject)
+    }
+    const response = await fetch(url, options)
+    if (!response.ok) {
+      throw new Error('Failed to fetch added favorite movie')
     }
     const user = await response.json()
     return user;

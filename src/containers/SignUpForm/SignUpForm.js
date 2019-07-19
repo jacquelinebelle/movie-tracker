@@ -66,7 +66,7 @@ class SignUpForm extends Component {
                             value: this.state.email,
                             onChange: this.handleChange,
                         },
-                        {
+                        { 
                             type: 'password',
                             value: this.state.password,
                             onChange: this.handleChange
@@ -76,7 +76,7 @@ class SignUpForm extends Component {
                     isLoggedIn={this.state.isLoggedIn}
                     error={
                         {isError: this.state.error,
-                        message: 'Email and password don\'t match'}
+                        message: 'Error signing up'}
                     }   
                 />
             </>

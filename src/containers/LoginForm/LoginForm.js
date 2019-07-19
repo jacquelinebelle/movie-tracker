@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { userLogin } from '../../apiCalls';
-import { setLoggedInUser } from '../../actions';
+import { setLoggedInUser, getFavorites } from '../../actions';
 import './LoginForm.scss';
 import CustomForm from '../../components/Shared/CustomForm';
 
@@ -26,7 +26,11 @@ export class LoginForm extends Component {
         let options = { email: this.state.email, password: this.state.password }
         try {
             let user = await userLogin('http://localhost:3000/api/users', options)
+            await console.log(user)
             this.props.setLoggedInUser(user.data)
+            let res = await fetch(`http://localhost:3000/api/users/${user.data.id}/favorites`)
+            let favorites = await res.json()
+            await this.props.getFavorites(favorites.data)
             this.setState({ isLoggedIn: true })
             this.setState({ error: '' })
         } catch (error) {
@@ -45,7 +49,7 @@ export class LoginForm extends Component {
     render() {
         return (
             <>
-                <CustomForm 
+                <CustomForm
                     title={'Log Into Your Account :)'}
                     formFields={[
                         {
@@ -62,9 +66,11 @@ export class LoginForm extends Component {
                     onSubmit={this.handleSubmit}
                     isLoggedIn={this.state.isLoggedIn}
                     error={
-                        {isError: this.state.error,
-                        message: 'Email and password don\'t match'}
-                    }   
+                        {
+                            isError: this.state.error,
+                            message: 'Email and password don\'t match'
+                        }
+                    }
                 />
             </>
         )
@@ -76,7 +82,8 @@ export const mapStateToProps = state => ({
 })
 
 export const mapDispatchToProps = dispatch => ({
-    handleSubmit: user => dispatch(setLoggedInUser(user))
+    setLoggedInUser: user => dispatch(setLoggedInUser(user)),
+    getFavorites: id => dispatch(getFavorites(id))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginForm)
