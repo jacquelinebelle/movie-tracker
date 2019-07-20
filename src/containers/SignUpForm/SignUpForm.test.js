@@ -1,8 +1,4 @@
-import { SignUpForm } from './SignUpForm';
-
-describe('SignUpForm', () => {
-    it('should', () => {
-        const please = true;
-        expect(please).toEqual(true);
-    })
-})
+import React from 'react';
+import NavBar from './NavBar';
+import { shallow } from 'enzyme';
+import configureStore from 'redux-mock-store';
