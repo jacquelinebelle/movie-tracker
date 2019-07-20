@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router'; 
 import {Link } from 'react-router-dom'
 import { getFavorites, addFavorites } from '../../actions';
-import { fetchObject } from '../../apiCalls';
+import { fetchStoreProperties } from '../../apiCalls';
 import './MovieCard.css';
 
 class MovieCard extends Component {
@@ -44,7 +44,7 @@ class MovieCard extends Component {
 
    toggleFavorite = async (movieObject, url, method, error) => {
     try {
-      await fetchObject(url, movieObject, method, error)
+      await fetchStoreProperties(url, movieObject, method, error)
       let res = await fetch(`http://localhost:3000/api/users/${this.props.user.id}/favorites`)
       let movie = await res.json()
       await this.props.getFavorites(movie.data);

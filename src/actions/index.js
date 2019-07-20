@@ -18,7 +18,7 @@ export const getFavorites = (favorites) => ({
   favorites
 })
 
-export const addFavorites = (favorites) => ({
-  type: 'ADD_FAVORITES',
-  favorites
-})
+// export const addFavorites = (favorites) => ({
+//   type: 'ADD_FAVORITES',
+//   favorites
+// })

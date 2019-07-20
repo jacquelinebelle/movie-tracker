@@ -12,12 +12,12 @@ export const fetchMovies = async () => {
   } 
 }
 
-export const fetchObject = async (url, movieObject, method, error) => {
+export const fetchStoreProperties = async (url, object, method, error) => {
   try {
     const options = {
       method: method,
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(movieObject)
+      body: JSON.stringify(object)
     }
     const response = await fetch(url, options)
     if (!response.ok) {

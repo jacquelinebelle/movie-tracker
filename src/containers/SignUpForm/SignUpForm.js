@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchObject } from '../../apiCalls';
-import { userLogin } from '../../apiCalls';
+import { fetchStoreProperties } from '../../apiCalls';
 import { setLoggedInUser } from '../../actions';
 import CustomForm from '../../components/Shared/CustomForm'
 import './SignUpForm.css';
@@ -31,9 +30,9 @@ class SignUpForm extends Component {
         };
         let errorMessage = 'Error adding new user.'
         try {
-            await fetchObject('http://localhost:3000/api/users/new', newUser, 'POST', errorMessage)
+            await fetchStoreProperties('http://localhost:3000/api/users/new', newUser, 'POST', errorMessage)
             let userLogin = { email: this.state.email, password: this.state.password }
-            let user = await fetchObject('http://localhost:3000/api/users', userLogin, 'POST', errorMessage)
+            let user = await fetchStoreProperties('http://localhost:3000/api/users', userLogin, 'POST', errorMessage)
             this.props.setLoggedInUser(user.data)
             this.setState({ isLoggedIn: true })
             this.setState({ error: '' })
