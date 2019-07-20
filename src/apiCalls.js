@@ -12,17 +12,16 @@ export const fetchMovies = async () => {
   } 
 }
 
-export const fetchNewUser = async (url, newUser) => {
+export const fetchStoreProperties = async (url, object, method, error) => {
   try {
     const options = {
-      method: 'POST',
+      method: method,
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(newUser)
+      body: JSON.stringify(object)
     }
     const response = await fetch(url, options)
     if (!response.ok) {
-      console.log(response)
-      throw new Error('User already added')
+      throw new Error(error)
     }
     const user = await response.json()
     return user;
@@ -32,40 +31,41 @@ export const fetchNewUser = async (url, newUser) => {
   }
 }
 
-export const userLogin = async (url, newUser) => {
-  try {
-    const options = {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(newUser)
-    }
-    const response = await fetch(url, options)
-    if (!response.ok) {
-      throw new Error('Incorrect Password')
-    }
-    const user = await response.json()
-    return user;
-  }
-  catch (error) {
-    throw new Error(error.message)
-  }
-}
+// export const fetchNewUser = async (url, newUser, error) => {
+//   try {
+//     const options = {
+//       method: 'POST',
+//       headers: { 'Content-Type': 'application/json' },
+//       body: JSON.stringify(newUser)
+//     }
+//     const response = await fetch(url, options)
+//     if (!response.ok) {
+//       console.log(response)
+//       throw new Error('User already added')
+//     }
+//     const user = await response.json()
+//     return user;
+//   }
+//   catch (error) {
+//     throw new Error(error.message)
+//   }
+// }
 
-export const fetchAddFavorite = async (url, movieObject) => {
-  try {
-    const options = {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(movieObject)
-    }
-    const response = await fetch(url, options)
-    if (!response.ok) {
-      throw new Error('Failed to fetch added favorite movie')
-    }
-    const user = await response.json()
-    return user;
-  }
-  catch (error) {
-    throw new Error(error.message)
-  }
-}
+// export const userLogin = async (url, newUser) => {
+//   try {
+//     const options = {
+//       method: 'POST',
+//       headers: { 'Content-Type': 'application/json' },
+//       body: JSON.stringify(newUser)
+//     }
+//     const response = await fetch(url, options)
+//     if (!response.ok) {
+//       throw new Error('Incorrect Password')
+//     }
+//     const user = await response.json()
+//     return user;
+//   }
+//   catch (error) {
+//     throw new Error(error.message)
+//   }
+// }

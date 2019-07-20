@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { userLogin } from '../../apiCalls';
+import { fetchStoreProperties } from '../../apiCalls';
 import { setLoggedInUser, getFavorites } from '../../actions';
 import './LoginForm.scss';
 import CustomForm from '../../components/Shared/CustomForm';
@@ -23,20 +23,33 @@ export class LoginForm extends Component {
 
     handleSubmit = async (e) => {
         e.preventDefault();
-        let options = { email: this.state.email, password: this.state.password }
+        await this.logInUser();
+        this.clearInputs();
+    }
+
+    logInUser = async () => {
+        let options = { email: this.state.email, password: this.state.password };
+        let errorMessage = 'Error logging in user.';
         try {
-            let user = await userLogin('http://localhost:3000/api/users', options)
-            await console.log(user)
+            let user = await fetchStoreProperties('http://localhost:3000/api/users', options, 'POST', errorMessage)
             this.props.setLoggedInUser(user.data)
-            let res = await fetch(`http://localhost:3000/api/users/${user.data.id}/favorites`)
-            let favorites = await res.json()
-            await this.props.getFavorites(favorites.data)
+            this.fetchUserFavorites(user);
             this.setState({ isLoggedIn: true })
             this.setState({ error: '' })
         } catch (error) {
             this.setState({ error: error.message })
         }
-        this.clearInputs();
+    }
+
+    fetchUserFavorites = async (user) => {
+        try {
+            let res = await fetch(`http://localhost:3000/api/users/${user.data.id}/favorites`)
+            let favorites = await res.json()
+            await this.props.getFavorites(favorites.data)
+        } 
+        catch (error) {
+            console.log(error.message);
+        }
     }
 
     clearInputs = () => {
