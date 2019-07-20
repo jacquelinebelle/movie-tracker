@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router'; 
 import {Link } from 'react-router-dom'
 import { getFavorites, addFavorites } from '../../actions';
-import { fetchToggleFavorite } from '../../apiCalls';
+import { fetchObject } from '../../apiCalls';
 import './MovieCard.css';
 
 class MovieCard extends Component {
@@ -34,19 +34,17 @@ class MovieCard extends Component {
     if(!this.props.user.name){
       this.setState({redirect:!this.state.redirect})
     } else if (this.props.user.name && !favorites.find(favorite => favorite.title === title)) {
-      this.toggleFavorite(movieObject, 'http://localhost:3000/api/users/favorites/new', 'POST');
+      let errorMessage = 'Error adding movie to favorites.';
+      this.toggleFavorite(movieObject, 'http://localhost:3000/api/users/favorites/new', 'POST', errorMessage);
     } else if (this.props.user.name && favorites.find(favorite => favorite.title === title)) {
-      console.log('remove')
-      this.toggleFavorite(deleteObject, `http://localhost:3000/api/users/${this.props.user.id}/favorites/${id}`, 'DELETE')
-      // const something = await fetch(`http://localhost:3000/api/users/${this.props.user.id}/favorites/${id}`)
-      // const someJson = await something.json();
-      // await console.log(someJson)
+      let errorMessage = 'Error removing movie from favorites.';
+      this.toggleFavorite(deleteObject, `http://localhost:3000/api/users/${this.props.user.id}/favorites/${id}`, 'DELETE', errorMessage);
     }
    }
 
-   toggleFavorite = async (movieObject, url, method) => {
+   toggleFavorite = async (movieObject, url, method, error) => {
     try {
-      await fetchToggleFavorite(url, movieObject, method)
+      await fetchObject(url, movieObject, method, error)
       let res = await fetch(`http://localhost:3000/api/users/${this.props.user.id}/favorites`)
       let movie = await res.json()
       await this.props.getFavorites(movie.data);
