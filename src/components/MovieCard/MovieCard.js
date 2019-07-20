@@ -11,7 +11,7 @@ class MovieCard extends Component {
   constructor({moviePoster, id, title, releaseDate, voteAverage, overview, user}){
     super({moviePoster, id, title, releaseDate, voteAverage, overview, user});
     this.state = {
-      url: 'http://image.tmdb.org/t/p/w154',
+      url: 'http://image.tmdb.org/t/p/w300',
       redirect: false,
       favorite: false
     }
