@@ -4,13 +4,16 @@ form {
   opacity: .95;
   align-self: center;
   height: 70vh;
-  margin: 50px;
+  margin: 20px;
   & button {
     width: 220px;
     height: 40px;
     background-color: #E50B13;
     border: none;
     font-size: 24px;
+    border-radius: 2px;
+    color: white;
+    font-weight: bold;
   }
 }
 
@@ -22,11 +25,18 @@ form {
   padding: 10px 50px;
   & input {
     height: 35px;
+    border-radius: 2px;
   }
   & label {
     color: white;
     align-self: flex-start;
     margin-bottom: 10px;
   }
+}
+
+.title {
+  // color :#333333;
+  font-size: 30px;
+  padding: 10px;
 }
 

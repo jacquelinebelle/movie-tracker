@@ -19,7 +19,7 @@ const CustomForm = ({ title, formFields, onSubmit, isLoggedIn, error }) => {
 
     return( 
         <>
-            <h2>{title}</h2>
+            <h2 className='title'>{title}</h2>
             <form>
                 {fields}
                 <button onClick={onSubmit}>Submit</button>
