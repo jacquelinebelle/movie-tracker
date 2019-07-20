@@ -1,0 +1,32 @@
+form {
+  width: 600px;
+  background-color: #333333;
+  opacity: .95;
+  align-self: center;
+  height: 70vh;
+  margin: 50px;
+  & button {
+    width: 220px;
+    height: 40px;
+    background-color: #E50B13;
+    border: none;
+    font-size: 24px;
+  }
+}
+
+.form {
+  margin: 25px 0px;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  padding: 10px 50px;
+  & input {
+    height: 35px;
+  }
+  & label {
+    color: white;
+    align-self: flex-start;
+    margin-bottom: 10px;
+  }
+}
+

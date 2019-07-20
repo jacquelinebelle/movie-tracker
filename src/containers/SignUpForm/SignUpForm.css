@@ -1,0 +1,13 @@
+.signup-page {
+  background-image: url('../../images/lego-background.jpg');
+  background-size: cover;
+  min-height: 100vh;
+  display: flex;
+  align-content: center;
+  flex-direction: column;
+}
+
+h2 {
+  margin: 0;
+}
+
