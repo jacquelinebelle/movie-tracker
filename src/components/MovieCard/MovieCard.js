@@ -4,6 +4,7 @@ import { Redirect } from 'react-router';
 import {Link } from 'react-router-dom'
 import { getFavorites, addFavorites } from '../../actions';
 import { fetchStoreProperties } from '../../apiCalls';
+import Overdrive from 'react-overdrive'
 import './MovieCard.css';
 
 class MovieCard extends Component {
@@ -57,7 +58,9 @@ class MovieCard extends Component {
     return (
       <article>
         <Link to={`/movies/${this.props.id}`}>
-          <img src={`${this.state.url}${this.props.moviePoster}`} alt=''/>
+          <Overdrive id={this.props.id}>
+            <img src={`${this.state.url}${this.props.moviePoster}`} alt=''/>
+          </Overdrive>
         </Link>
         <button onClick={this.clickFav}>Favorite</button>
         {this.state.redirect && <Redirect to='/login'/> }
