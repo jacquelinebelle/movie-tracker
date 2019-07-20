@@ -1,10 +1,26 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+// import ReactDOM from 'react-dom';
 import App from './App';
+import { shallow } from 'enzyme';
+// import { Provider } from 'react-redux';
+// import { createStore } from 'redux';
+// import { store } from '../../index.js'
+// import { connect } from 'react-redux';
+import configureStore from 'redux-mock-store';
+
 
 describe('App', () => {
-  it('should stop failing tests', () => {
-    const please = true;
-    expect(please).toEqual(true);
+  let wrapper;
+  const initialState = [];
+  let store
+  const mockStore = configureStore();
+
+  beforeEach(() => {
+    store = mockStore(initialState);
+    wrapper = shallow(<App store={store}/>)
+  })
+
+  it.only('should match the snapshot', () => {
+    expect(wrapper).toMatchSnapshot()
   })
 })
