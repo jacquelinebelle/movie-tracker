@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router'; 
 import {Link } from 'react-router-dom'
 import { getFavorites, addFavorites } from '../../actions';
-import { fetchAddFavorite } from '../../apiCalls';
+import { fetchToggleFavorite } from '../../apiCalls';
 import './MovieCard.css';
 
 class MovieCard extends Component {
@@ -27,16 +27,26 @@ class MovieCard extends Component {
       vote_average: voteAverage,
       overview: overview
     } 
+    const deleteObject = {
+      user_id: this.props.user.id,
+      movie_id: id
+    }
     if(!this.props.user.name){
       this.setState({redirect:!this.state.redirect})
-    } else if (!favorites.includes(movieObject)) {
-      this.toggleFavorite(movieObject, 'http://localhost:3000/api/users/favorites/new');
-    } 
+    } else if (this.props.user.name && !favorites.find(favorite => favorite.title === title)) {
+      this.toggleFavorite(movieObject, 'http://localhost:3000/api/users/favorites/new', 'POST');
+    } else if (this.props.user.name && favorites.find(favorite => favorite.title === title)) {
+      console.log('remove')
+      this.toggleFavorite(deleteObject, `http://localhost:3000/api/users/${this.props.user.id}/favorites/${id}`, 'DELETE')
+      // const something = await fetch(`http://localhost:3000/api/users/${this.props.user.id}/favorites/${id}`)
+      // const someJson = await something.json();
+      // await console.log(someJson)
+    }
    }
 
-   toggleFavorite = async (movieObject, url) => {
+   toggleFavorite = async (movieObject, url, method) => {
     try {
-      await fetchAddFavorite(url, movieObject)
+      await fetchToggleFavorite(url, movieObject, method)
       let res = await fetch(`http://localhost:3000/api/users/${this.props.user.id}/favorites`)
       let movie = await res.json()
       await this.props.getFavorites(movie.data);

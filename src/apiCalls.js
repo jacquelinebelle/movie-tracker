@@ -51,10 +51,10 @@ export const userLogin = async (url, newUser) => {
   }
 }
 
-export const fetchAddFavorite = async (url, movieObject) => {
+export const fetchToggleFavorite = async (url, movieObject, method) => {
   try {
     const options = {
-      method: 'POST',
+      method: method,
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(movieObject)
     }
