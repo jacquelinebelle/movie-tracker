@@ -9,7 +9,7 @@ const movieDataCleaner = (movies) => {
       voteCount: movie.vote_count, 
       overview: movie.overview,
       genres: movie.genre_ids,
-      favorited: false,
+      favorite: false,
     }  
   })
 }

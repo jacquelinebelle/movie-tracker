@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router'; 
-import { getFavorites } from '../../actions';
+import { getFavorites, addFavorites } from '../../actions';
 import { fetchAddFavorite } from '../../apiCalls';
 import './MovieCard.css';
 
@@ -52,11 +52,12 @@ class MovieCard extends Component {
 
  
 const mapStateToProps = (state) => ({
-  user: state.user
+  user: state.user,
+  movies: state.movies
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  getFavorites: movie => dispatch(getFavorites(movie))
+  getFavorites: movie => dispatch(getFavorites(movie)),
 })
  
 export default connect(mapStateToProps, mapDispatchToProps)(MovieCard)

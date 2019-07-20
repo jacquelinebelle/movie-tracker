@@ -20,7 +20,6 @@ class App extends Component {
   }
 
 
-
   render() {
     const displayMovieDetails = () => {
       return this.props.movies.map((movie, index) => {
@@ -42,7 +41,8 @@ class App extends Component {
         <Switch>
           <Route exact path='/create-account' render={() => <SignUpForm />} />
           <Route exact path='/login' render={() => <LoginForm />} />
-          <Route exact path='/' render={() => <MovieGallery />} />
+          <Route exact path='/' render={() => <MovieGallery displayFavorites={false} />} />
+          {<Route exact path='/favorites' render={() => <MovieGallery displayFavorites={true} />} />}
           {displayMovieDetails()}
         </Switch>
       </div>
@@ -53,7 +53,8 @@ class App extends Component {
 }
 
 const mapStateToProps = state => ({
-  movies: state.movies
+  movies: state.movies,
+  favorites: state.favorites
 })
 const mapDispatchToProps = (dispatch) => ({
   setMovies: (movies) => dispatch( setMovies(movies) )
