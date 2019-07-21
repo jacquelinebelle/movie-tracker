@@ -41,6 +41,21 @@ describe('actions', () => {
     expect(result).toEqual(expectedAction)
   })
 
+  it('should have a type of GET_FAVORITES', () => {
+    const favorites = [
+      {title: 'Home Alone 2: Lost in New York'},
+      {title: 'Home Alone'}
+    ];
+
+    const expectedAction = {
+      type: 'GET_FAVORITES',
+      favorites: favorites
+    };
+
+    const result = actions.getFavorites(favorites);
+
+    expect(result).toEqual(expectedAction);
+  })
 
 })
 
