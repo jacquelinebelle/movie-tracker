@@ -2,12 +2,12 @@
     display: flex;
     font-size: 20px;
     height: 75px;
-    justify-content: space-around;
+    /* justify-content: space-around; */
     background-color: #333333;
 }
 
 .link {
-    margin: 20px;
+    /* margin: 20px; */
     width: 220px;
     height: 35px;
     background-color: black;;
@@ -15,4 +15,12 @@
     text-decoration: none;
     opacity: .5;
     border-radius: 3px;
+    justify-self: flex-end;
+}
+
+.headline{
+  text-decoration: none;
+  color: #E50B13;
+  /* margin: 20px 5px; */
+  font-size: 24px;
 }

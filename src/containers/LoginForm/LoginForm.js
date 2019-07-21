@@ -61,7 +61,7 @@ export class LoginForm extends Component {
 
     render() {
         return (
-            <>
+            <section className='login-page'>
                 <CustomForm
                     title={'Log Into Your Account :)'}
                     formFields={[
@@ -85,7 +85,7 @@ export class LoginForm extends Component {
                         }
                     }
                 />
-            </>
+            </section>
         )
     }
 }
