@@ -17,5 +17,9 @@ describe('App', () => {
 
   it('should match the snapshot', () => {
     expect(wrapper).toMatchSnapshot()
+
+  it('should match snapshots', () => {
+    const please = true;
+    expect(please).toEqual(true);
   })
 })
