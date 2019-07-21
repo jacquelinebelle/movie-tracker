@@ -8,7 +8,7 @@ import rootReducer from './reducers';
 import App from './components/App/App.js';
 import './index.css';
 
-const store = createStore(rootReducer, composeWithDevTools());
+export const store = createStore(rootReducer, composeWithDevTools());
 
 ReactDOM.render(
   <Provider store={store}>

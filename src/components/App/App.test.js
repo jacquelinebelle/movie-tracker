@@ -1,9 +1,24 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import App from './App';
+import { shallow } from 'enzyme';
+import configureStore from 'redux-mock-store';
+
 
 describe('App', () => {
-  it('should stop failing tests', () => {
+  let wrapper;
+  const initialState = [];
+  let store
+  const mockStore = configureStore();
+
+  beforeEach(() => {
+    store = mockStore(initialState);
+    wrapper = shallow(<App store={store}/>)
+  })
+
+  it('should match the snapshot', () => {
+    expect(wrapper).toMatchSnapshot()
+
+  it('should match snapshots', () => {
     const please = true;
     expect(please).toEqual(true);
   })
