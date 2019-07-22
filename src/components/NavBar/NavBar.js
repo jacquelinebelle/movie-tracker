@@ -4,7 +4,7 @@ import { signOutUser } from '../../actions';
 import { connect } from 'react-redux';
 import './NavBar.css'
 
-const NavBar = (props) => {
+export const NavBar = (props) => {
 
     return (
         <nav className="nav-bar">
@@ -17,11 +17,11 @@ const NavBar = (props) => {
     )
 }
 
-const mapStateToProps = (state) => ({
+export const mapStateToProps = (state) => ({
     user: state.user
 })
 
-const mapDispatchToProps = (dispatch) => ({
+export const mapDispatchToProps = (dispatch) => ({
     signOutUser: (user) => dispatch(signOutUser(user))
 })
 

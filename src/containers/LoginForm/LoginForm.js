@@ -21,12 +21,14 @@ export class LoginForm extends Component {
         this.setState({ [e.target.name]: e.target.value })
     }
 
+    // test target, toBeCalledWith()
     handleSubmit = async (e) => {
         e.preventDefault();
         await this.logInUser();
         this.clearInputs();
     }
 
+    // toBeCalledWith, .state(), sad path
     logInUser = async () => {
         let options = { email: this.state.email, password: this.state.password };
         let errorMessage = 'Error logging in user.';
@@ -34,20 +36,19 @@ export class LoginForm extends Component {
             let user = await fetchStoreProperties('http://localhost:3000/api/users', options, 'POST', errorMessage)
             this.props.setLoggedInUser(user.data)
             this.fetchUserFavorites(user);
-            this.setState({ isLoggedIn: true })
-            this.setState({ error: '' })
+            this.setState({ isLoggedIn: true, error: '' })
         } catch (error) {
             this.setState({ error: error.message })
         }
     }
 
+    // mock out fetch for fetchUF (45), do fetch, getF called, sad path, error reducer set error in redux store
     fetchUserFavorites = async (user) => {
         try {
             let res = await fetch(`http://localhost:3000/api/users/${user.data.id}/favorites`)
             let favorites = await res.json()
             await this.props.getFavorites(favorites.data)
-        } 
-        catch (error) {
+        } catch (error) {
             console.log(error.message);
         }
     }
