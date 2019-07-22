@@ -1,13 +1,17 @@
 .nav-bar {
     display: flex;
     font-size: 20px;
-    height: 75px;
-    /* justify-content: space-around; */
+    height: 60px;
+    justify-content: space-between;
     background-color: #333333;
+    box-sizing: border-box;
+    padding: 15px 15px 0 15px;
 }
 
 .link {
     /* margin: 20px; */
+    margin: 0 15px 0 5px;
+  
     width: 220px;
     height: 35px;
     background-color: black;;
@@ -15,7 +19,7 @@
     text-decoration: none;
     opacity: .5;
     border-radius: 3px;
-    justify-self: flex-end;
+    justify-self: right;
 }
 
 .headline{
@@ -24,3 +28,4 @@
   /* margin: 20px 5px; */
   font-size: 24px;
 }
+

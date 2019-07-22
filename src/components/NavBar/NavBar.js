@@ -10,9 +10,11 @@ const NavBar = (props) => {
         <nav className="nav-bar">
             {/* <h1 className='headline'>Movie Tracker</h1> */}
             <NavLink className="headline" to='/'>Movie Tracker</NavLink>
-            <NavLink className="link" to='/login'>Login</NavLink>
-            <NavLink className="link" to='/create-account'>Create A New Account</NavLink>
-            <NavLink className="link" to='/favorites'>Favorites</NavLink>
+            <div className='command-buttons'>
+              <NavLink className="link" to='/login'>Login</NavLink>
+              <NavLink className="link" to='/create-account'>Create A New Account</NavLink>
+              <NavLink className="link" to='/favorites'>Favorites</NavLink>
+            </div>
             {props.user.name && <button onClick={() => props.signOutUser({})}>Sign out</button>}
         </nav>
     )
