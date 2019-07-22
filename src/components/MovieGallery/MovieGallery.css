@@ -2,8 +2,10 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-  /* grid-template-columns: repeat(6, 1fr); */
-  /* grid-gap: 10px; */
   background-color: #333333;
   min-height: 100vh;
+}
+
+article {
+  opacity: 1
 }
