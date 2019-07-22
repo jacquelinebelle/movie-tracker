@@ -15,6 +15,7 @@ import './App.css'
 class App extends Component {
   componentDidMount = async () => {
     let movies = await fetchMovies(); 
+    console.log(movies)
     let cleanMovies = movieDataCleaner(movies)
     this.props.setMovies(cleanMovies);
   }
@@ -32,11 +33,13 @@ class App extends Component {
           voteCount={movie.voteCount}
           poster={movie.moviePoster}
           id={movie.id}
-          key={index} /> }/>
+          key={index}
+          backdrop={movie.backdrop} /> }/>
       })
     }
     return (
       <div className="App">
+
         <NavBar />
         <Switch>
           <Route exact path='/create-account' render={() => <SignUpForm />} />

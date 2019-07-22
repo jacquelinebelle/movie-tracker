@@ -1,3 +1,13 @@
+
 img {
   box-shadow: 0 0 30px black;
 }
+
+.star {
+  width: 25px;
+  position: relative;
+  bottom: 35px;
+  left: 130px;
+}
+
+

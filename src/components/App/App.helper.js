@@ -10,6 +10,7 @@ const movieDataCleaner = (movies) => {
       overview: movie.overview,
       genres: movie.genre_ids,
       favorite: false,
+      backdrop: movie.backdrop_path
     }  
   })
 }

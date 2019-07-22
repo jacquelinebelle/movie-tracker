@@ -3,6 +3,7 @@ import { fetchMovies } from '../../apiCalls';
 import { setMovies } from '../../actions';
 import { connect } from 'react-redux';
 import MovieCard from '../MovieCard/MovieCard';
+import Overdrive from 'react-overdrive';
 import './MovieGallery.css';
 
 class MovieGallery extends Component {

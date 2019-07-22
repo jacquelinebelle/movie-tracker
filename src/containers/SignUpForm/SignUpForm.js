@@ -53,7 +53,7 @@ export class SignUpForm extends Component {
 
     render() {
         return (
-            <>
+            <section className='signup-page'>
                 <CustomForm 
                     title={'Create an Account :)'}
                     formFields={[
@@ -80,7 +80,7 @@ export class SignUpForm extends Component {
                         message: 'Error signing up'}
                     }   
                 />
-            </>
+            </section>
         )
     }
 }

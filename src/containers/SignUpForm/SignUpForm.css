@@ -1,0 +1,17 @@
+.login-page {
+  background-image: url('../../images/lego-background.jpg');
+  background-size: cover;
+  min-height: 100vh;
+  display: flex;
+  align-content: center;
+  flex-direction: column;
+}
+
+h2 {
+  align-self: center;
+  margin: 20px;
+  background: #333333;
+  color: white;
+  width: 350px;
+}
+
