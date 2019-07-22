@@ -25,6 +25,7 @@
 .headline{
   text-decoration: none;
   color: #E50B13;
+  /* font-weight: bold; */
   /* margin: 20px 5px; */
   font-size: 24px;
 }

@@ -19,7 +19,7 @@ const MovieDetailPage = ({ title, releaseDate, synopsis, rating, voteCount, post
               <img src={`http://image.tmdb.org/t/p/w154${poster}`} alt={`A movie poster for ${title}.`} className='poster'/>
             </Overdrive>
             <section className='movie-info'>
-            <h2>{title}</h2>
+            <h2 id='movie-title'>{title.toUpperCase()}</h2>
             {/* <p>Release: {genres}</p> */}
             <p>This movie is a {rating} out of 10 based on {voteCount} people's opinions.</p>
             <h3>Synopsis:</h3> 

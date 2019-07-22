@@ -27,6 +27,15 @@ h3 {
   margin: 0;
 }
 
+#movie-title {
+  background-color: transparent;
+  color: #333333;
+  width: 100%;
+  text-align: center;
+  text-shadow: 2px 2px lightgrey;
+  font-size: 30px;
+}
+
 .synopsis {
   width: 80%;
 }
