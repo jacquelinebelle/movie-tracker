@@ -12,7 +12,8 @@ import MovieDetailPage from '../MovieDetailPage/MovieDetailPage'
 import './App.css'
 
 
-class App extends Component {
+export class App extends Component {
+  
   componentDidMount = async () => {
     let movies = await fetchMovies(); 
     let cleanMovies = movieDataCleaner(movies)
@@ -52,11 +53,11 @@ class App extends Component {
   
 }
 
-const mapStateToProps = state => ({
+export const mapStateToProps = state => ({
   movies: state.movies,
   favorites: state.favorites
 })
-const mapDispatchToProps = (dispatch) => ({
+export const mapDispatchToProps = (dispatch) => ({
   setMovies: (movies) => dispatch( setMovies(movies) )
 })
 
