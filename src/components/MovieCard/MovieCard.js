@@ -4,13 +4,16 @@ import { Redirect } from 'react-router';
 import {Link } from 'react-router-dom'
 import { getFavorites, addFavorites } from '../../actions';
 import { fetchStoreProperties } from '../../apiCalls';
+import Overdrive from 'react-overdrive';
+import favb from '../../images/fav-b.svg'
+import favy from '../../images/fav-y.svg'
 import './MovieCard.css';
 
 class MovieCard extends Component {
   constructor({moviePoster, id, title, releaseDate, voteAverage, overview, user}){
     super({moviePoster, id, title, releaseDate, voteAverage, overview, user});
     this.state = {
-      url: 'http://image.tmdb.org/t/p/w154',
+      url: 'http://image.tmdb.org/t/p/w300',
       redirect: false,
       favorite: false
     }
@@ -36,9 +39,11 @@ class MovieCard extends Component {
     } else if (this.props.user.name && !favorites.find(favorite => favorite.title === title)) {
       let errorMessage = 'Error adding movie to favorites.';
       this.toggleFavorite(movieObject, 'http://localhost:3000/api/users/favorites/new', 'POST', errorMessage);
+      this.setState({favorite: !this.state.favorite})
     } else if (this.props.user.name && favorites.find(favorite => favorite.title === title)) {
       let errorMessage = 'Error removing movie from favorites.';
       this.toggleFavorite(deleteObject, `http://localhost:3000/api/users/${this.props.user.id}/favorites/${id}`, 'DELETE', errorMessage);
+      this.setState({favorite: !this.state.favorite})
     }
    }
 
@@ -52,14 +57,20 @@ class MovieCard extends Component {
       console.log(error)
     }
    }
+
+   findFav = () => {
+    return this.props.favorites.find(favorite => favorite.title === this.props.title)
+   }
   
   render() {
     return (
       <article>
         <Link to={`/movies/${this.props.id}`}>
-          <img src={`${this.state.url}${this.props.moviePoster}`} alt=''/>
+          <Overdrive id={this.props.id}>
+            <img src={`${this.state.url}${this.props.moviePoster}`} alt=''/>
+          </Overdrive>
         </Link>
-        <button onClick={this.clickFav}>Favorite</button>
+        <img src={this.findFav() ? favy : favb} onClick={this.clickFav} alt='star' className='star'/>
         {this.state.redirect && <Redirect to='/login'/> }
       </article>
     )

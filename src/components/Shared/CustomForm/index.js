@@ -7,19 +7,19 @@ const CustomForm = ({ title, formFields, onSubmit, isLoggedIn, error }) => {
 
     const fields = formFields.map(field => {
         return(
-            <>
+            <article className = 'form'>
                 <label htmlFor={`${field.type}-input`}>{field.type}</label>
                 <input type="text" placeholder={field.type}
                     name={field.type}
                     value={field.value}
                     onChange={field.onChange} />
-            </>
+            </article>
         )
     }) 
 
     return( 
         <>
-            <h2>{title}</h2>
+            <h2 className='title'>{title}</h2>
             <form>
                 {fields}
                 <button onClick={onSubmit}>Submit</button>

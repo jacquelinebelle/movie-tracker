@@ -1,0 +1,32 @@
+.backdrop {
+  width: 100%;
+}
+
+.poster{
+  margin-top: 30vh;
+  margin-left: 45px;
+}
+
+#movie-detail-page {
+  text-align: left;
+}
+
+.movie-info {
+  margin-left: 45px;
+  display: flex;
+  flex-direction: column;
+}
+
+h2{
+  /* width: 100%; */
+  margin: 0;
+  align-self: center;
+}
+
+h3 {
+  margin: 0;
+}
+
+.synopsis {
+  width: 80%;
+}
