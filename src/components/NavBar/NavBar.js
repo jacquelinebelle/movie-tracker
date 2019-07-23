@@ -2,13 +2,13 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { signOutUser } from '../../actions';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types'
 import './NavBar.css'
 
 export const NavBar = (props) => {
 
     return (
         <nav className="nav-bar">
-            {/* <h1 className='headline'>Movie Tracker</h1> */}
             <NavLink className="headline" to='/'>MOVIE TRACKER</NavLink>
             <div className='command-buttons'>
               <NavLink className="link" to='/create-account'>Create A New Account</NavLink>
@@ -18,6 +18,11 @@ export const NavBar = (props) => {
             {props.user.name && <NavLink className="link" onClick={() => props.signOutUser({})}>Sign out</NavLink>}
         </nav>
     )
+}
+
+NavBar.propTypes = {
+  signOutUser: PropTypes.func,
+  user: PropTypes.object
 }
 
 export const mapStateToProps = (state) => ({
