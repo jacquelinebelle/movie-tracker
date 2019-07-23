@@ -27,7 +27,7 @@ describe('MovieCard', () => {
       expect(wrapper).toMatchSnapshot()
     })
 
-    it.skip('fetches with the right URL and calls getFavorites when toggleFavorite is called', async () => {
+    it('fetches with the right URL when toggleFavorite is called', async () => {
       wrapper.instance().getFavorites = jest.fn();
       let mockUrl = 'http://localhost:3000/api/users/2/favorites';
       let mockMovie =  { title: "Hat" };
@@ -41,9 +41,6 @@ describe('MovieCard', () => {
 
       await wrapper.instance().toggleFavorite();
       expect(window.fetch).toHaveBeenCalledWith(mockUrl);
-
-      await wrapper.instance().toggleFavorite();
-      await expect(wrapper.instance().getFavorites).toHaveBeenCalled();
     })
 
     it('should reset state to redirect:true, if there is no user name selected when the favorite button is clicked', () => {
@@ -68,6 +65,21 @@ describe('MovieCard', () => {
       await wrapper.instance().toggleFavorite();
 
       expect(wrapper.state('error')).toEqual(errorMessage)
+    })
+
+    it('should change state when favorite button is clicked (favorite)', () => {
+      expect(wrapper.state('favorite')).toEqual(false)
+      wrapper.find('.star').simulate('click'); 
+      expect(wrapper.state('favorite')).toEqual(true)
+    })
+
+    it.skip('should change state when favorite button is clicked (unfavorite)', () => {
+      wrapper = shallow(<MovieCard  user={mockUser} movies={mockMovies} favorites={mockFavorites} title='Hat 2' />)
+
+      expect(wrapper.state('favorite')).toEqual(true);
+      wrapper.find('.star').simulate('click'); 
+      expect(wrapper.state('favorite')).toEqual(false);
+
     })
   })
 
