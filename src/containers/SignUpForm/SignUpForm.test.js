@@ -4,6 +4,11 @@ import React, {Component} from 'react';
 import { shallow } from 'enzyme';
 import { fetchStoreProperties } from '../../apiCalls';
 
+jest.mock("../../apiCalls", () => ({
+  fetchStoreProperties: jest.fn().mockImplementation(()=> {
+    return Promise.resolve({id: 1, name: "fake", emai: "fake", password: "fake"})
+  })
+ }))
 
 describe('SignUpFormContainer', () => {
     describe('mapStateToProps', () => {
@@ -70,9 +75,19 @@ describe('SignUpFormContainer', () => {
         })
         wrapper.instance().clearInputs = jest.fn();
       })
-      it('should call clear inputs when handle submit is called', () => {
+      it('should call fetchStoreProperties submit is called', () => {
         wrapper.instance().handleSubmit({preventDefault: jest.fn()});
-        expect(wrapper.instance().clearInputs).toHaveBeenCalled();
+        expect(fetchStoreProperties).toHaveBeenCalled();
+      })
+      it('should reset state when submit is called', () => {
+        wrapper.instance().setState({error: 'test error', isLoggedIn: false})
+        wrapper.instance().handleSubmit({preventDefault: jest.fn()});
+        wrapper.state({name: '',
+        email: '',
+        password: '',
+        isLoggedIn: true,
+        error: ''})
+
       })
       
     })
