@@ -58,7 +58,7 @@ describe('MovieCard', () => {
       
       wrapper.find('.star').simulate('click')
 
-      expect(wrapper.instance().state).toEqual({"favorite": false, "redirect": true, "url": "http://image.tmdb.org/t/p/w300"});
+      expect(wrapper.instance().state).toEqual({"error": "", "favorite": false, "redirect": true, "url": "http://image.tmdb.org/t/p/w300"});
     })
 
     it('should call toggleFavorite if a user is selected and add a movie to the favorites array', () => {
