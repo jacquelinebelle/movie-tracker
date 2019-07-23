@@ -7,7 +7,7 @@ import LoginForm from '../../containers/LoginForm/LoginForm';
 import { fetchMovies } from '../../apiCalls';
 import { setMovies } from '../../actions';
 import { connect } from 'react-redux';
-import movieDataCleaner from './App.helper'
+import { movieDataCleaner } from './App.helper'
 import MovieDetailPage from '../MovieDetailPage/MovieDetailPage'
 import './App.css'
 

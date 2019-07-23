@@ -46,7 +46,7 @@ export class LoginForm extends Component {
             let favorites = await res.json()
             await this.props.getFavorites(favorites.data)
         } catch (error) {
-            console.log(error.message);
+            this.setState({ error: 'Error fetching favorites.'});
         }
     }
 

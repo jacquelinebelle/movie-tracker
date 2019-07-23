@@ -15,7 +15,8 @@ export class MovieCard extends Component {
     this.state = {
       url: 'http://image.tmdb.org/t/p/w300',
       redirect: false,
-      favorite: false
+      favorite: false,
+      error: ''
     }
   }
 
@@ -54,7 +55,7 @@ export class MovieCard extends Component {
       let movie = await res.json()
       await this.props.getFavorites(movie.data);
     } catch (error) {
-      console.log(error)
+      this.setState({ error: 'Error with toggling favorite movie.' })
     }
    }
 
