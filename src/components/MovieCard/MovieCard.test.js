@@ -8,7 +8,10 @@ describe('MovieCard', () => {
     let wrapper, mockUser, mockMovies, mockFavorites;
 
     beforeEach(() => {
-      mockUser = {id: 2};
+      mockUser = {
+        name: 'Evan',
+        id: 2
+      };
       mockMovies = [
         {title: 'Hat'},
         {title: 'Hat 2'}
@@ -24,7 +27,7 @@ describe('MovieCard', () => {
       expect(wrapper).toMatchSnapshot()
     })
 
-    it('fetches with the right URL and calls getFavorites when toggleFavorite is called', async () => {
+    it.skip('fetches with the right URL and calls getFavorites when toggleFavorite is called', async () => {
       wrapper.instance().getFavorites = jest.fn();
       let mockUrl = 'http://localhost:3000/api/users/2/favorites';
       let mockMovie =  { title: "Hat" };
@@ -46,33 +49,25 @@ describe('MovieCard', () => {
     it('should reset state to redirect:true, if there is no user name selected when the favorite button is clicked', () => {
       let nonUser = {}
       wrapper = shallow(<MovieCard user={nonUser} movies={mockMovies} favorites={mockFavorites} />)
-      console.log(wrapper.state())
+
       wrapper.find('.star').simulate('click')
 
       expect(wrapper.state('redirect')).toEqual(true);
     })
 
-    it.skip('should call toggleFavorite if a user is selected and add a movie to the favorites array', () => {
-      const mockUser = { name: "NIMSUM"}
-      let wrapper = shallow(<MovieCard user={mockUser} initialState={initialState} favorites={[{title: 'Hat 2'}]} movies={initialState.movies}/>)
-      
-      jest.spyOn(wrapper.instance(), 'toggleFavorite');
-      // const result = wrapper.instance().toggleFavorite()
+    it('should call toggleFavorite if a user is selected', () => {
+     wrapper = shallow(<MovieCard user={mockUser} movies={mockMovies} favorites={mockFavorites} />)
 
-      wrapper.find('button').simulate('click')
-
+      wrapper.instance().toggleFavorite = jest.fn();
+      wrapper.find('.star').simulate('click');
       expect(wrapper.instance().toggleFavorite).toHaveBeenCalled();
     })
 
-    it.skip('should call toggleFavorite if a user is selected and remove a movie from the favorites array', () => {
-      const mockUser = { name: "NIMSUM"}
-      let wrapper = shallow(<MovieCard user={mockUser} initialState={initialState} title="Hat 2" favorites={[{title: 'Hat 2'}]} movies={initialState.movies}/>)
-      
-      jest.spyOn(wrapper.instance(), 'toggleFavorite');
+    it('should set an error message to state when toggleFavorites is called with uncertain parameters', async () => {
+      const errorMessage = 'Error with toggling favorite movie.';
+      await wrapper.instance().toggleFavorite();
 
-      wrapper.find('button').simulate('click')
-
-      expect(wrapper.instance().toggleFavorite).toHaveBeenCalled();
+      expect(wrapper.state('error')).toEqual(errorMessage)
     })
   })
 
