@@ -2,13 +2,13 @@ import React from 'react';
 import { Redirect } from 'react-router'; 
 import './CustomForm.scss';
 
-const CustomForm = ({ title, formFields, onSubmit, isLoggedIn, error }) => {
+export const CustomForm = ({ title, formFields, onSubmit, isLoggedIn, error }) => {
     
 
     const fields = formFields.map(field => {
         return(
             <>
-                <label htmlFor={`${field.type}-input`}>{field.type}</label>
+                <label className={`${field.type}-input`}>{field.type}</label>
                 <input type="text" placeholder={field.type}
                     name={field.type}
                     value={field.value}
