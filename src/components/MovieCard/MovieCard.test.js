@@ -4,25 +4,27 @@ import { MovieCard, mapStateToProps, mapDispatchToProps } from './MovieCard';
 import { getFavorites } from '../../actions';
 
 describe('MovieCard', () => {
-  describe('MovieCard', () => {
-
-    let initialState = {
-      user: "User",
-      movies: [
-        {title: 'Hat'},
-        {title: 'Hat 2'}
-      ],
-      
-      favorites: [
-        {title: 'Hat 2'}
-      ]
-    };
   
-    let wrapper = shallow(<MovieCard initialState={initialState} movies={initialState.movies} />)
+  describe('MovieCard', () => {
+    let wrapper;
+    let initialState
   
   
     beforeEach(() => {
-      wrapper = shallow(<MovieCard />)
+      initialState = {
+        user: "User",
+        movies: [
+          {title: 'Hat'},
+          {title: 'Hat 2'}
+        ],
+        
+        favorites: [
+          {title: 'Hat 2'}
+        ]
+      };
+
+      wrapper = shallow(<MovieCard initialState={initialState} movies={initialState.movies} favorites={[]}/>)
+  
     })
   
     it('should match the snapshot', () => {
@@ -52,21 +54,22 @@ describe('MovieCard', () => {
 
     it('should reset state to redirect:true, if there is no user name selected', () => {
       let mockUser = { user: null}
-      let wrapper = shallow(<MovieCard initialState={initialState} movies={initialState.movies} user={mockUser}/>)
+      let wrapper = shallow(<MovieCard initialState={initialState} movies={initialState.movies} user={mockUser} favorites={[]}/>)
       
-      wrapper.find('button').simulate('click')
+      wrapper.find('.star').simulate('click')
 
-      expect(wrapper.instance().state).toEqual({"favorite": false, "redirect": true, "url": "http://image.tmdb.org/t/p/w154"});
+      expect(wrapper.instance().state).toEqual({"favorite": false, "redirect": true, "url": "http://image.tmdb.org/t/p/w300"});
     })
 
     it('should call toggleFavorite if a user is selected and add a movie to the favorites array', () => {
       const mockUser = { name: "NIMSUM"}
+
       let wrapper = shallow(<MovieCard user={mockUser} initialState={initialState} favorites={[{title: 'Hat 2'}]} movies={initialState.movies}/>)
-      
+      wrapper.instance().findFav = jest.fn()
       jest.spyOn(wrapper.instance(), 'toggleFavorite');
       // const result = wrapper.instance().toggleFavorite()
 
-      wrapper.find('button').simulate('click')
+      wrapper.find('.star').simulate('click')
 
       expect(wrapper.instance().toggleFavorite).toHaveBeenCalled();
     })
@@ -77,7 +80,7 @@ describe('MovieCard', () => {
       
       jest.spyOn(wrapper.instance(), 'toggleFavorite');
 
-      wrapper.find('button').simulate('click')
+      wrapper.find('.star').simulate('click')
 
       expect(wrapper.instance().toggleFavorite).toHaveBeenCalled();
     })
