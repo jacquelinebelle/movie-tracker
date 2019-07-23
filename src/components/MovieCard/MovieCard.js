@@ -9,7 +9,7 @@ import favb from '../../images/fav-b.svg'
 import favy from '../../images/fav-y.svg'
 import './MovieCard.css';
 
-class MovieCard extends Component {
+export class MovieCard extends Component {
   constructor({moviePoster, id, title, releaseDate, voteAverage, overview, user}){
     super({moviePoster, id, title, releaseDate, voteAverage, overview, user});
     this.state = {
@@ -78,13 +78,13 @@ class MovieCard extends Component {
 }
 
  
-const mapStateToProps = (state) => ({
+export const mapStateToProps = (state) => ({
   user: state.user,
   movies: state.movies,
   favorites: state.favorites
 })
 
-const mapDispatchToProps = (dispatch) => ({
+export const mapDispatchToProps = (dispatch) => ({
   getFavorites: movie => dispatch(getFavorites(movie)),
 })
  

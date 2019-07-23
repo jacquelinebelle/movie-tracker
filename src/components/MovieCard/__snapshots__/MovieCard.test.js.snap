@@ -1,7 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-<<<<<<< HEAD
-exports[`MovieCard should match the snapshot 1`] = `undefined`;
-=======
-exports[`MovieCard should match the snapshot 1`] = `ShallowWrapper {}`;
->>>>>>> ad5335c0ac9f1e18dba133df46f3008b09702054

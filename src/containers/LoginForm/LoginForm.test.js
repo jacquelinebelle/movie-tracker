@@ -29,17 +29,15 @@ describe('LoginFormContainer', () => {
     })
     describe('LoginForm', () => {
         let wrapper;
-        const initialState = [];
-        let store
-        const mockStore = configureStore();
+  
         beforeEach(() => {
-            store = mockStore(initialState);
-            wrapper = shallow(<LoginForm store={store}/>)
-        })
+            wrapper = shallow(<LoginForm />)
+        });
+
         it('should match the snapshot', () => {
             expect(wrapper).toMatchSnapshot()
-        })
-    })
+        });
+    });
 
 })
 
