@@ -1,21 +1,36 @@
 import React from 'react';
-import MovieDetailPage from './MovieDetailPage';
+import { MovieDetailPage, mapStateToProps } from './MovieDetailPage';
 import { shallow } from 'enzyme';
-import configureStore from 'redux-mock-store';
-
 
 describe('MovieDetailPage', () => {
-  let wrapper;
-  const initialState = [];
-  let store
-  const mockStore = configureStore();
+  describe('MovieDetail Snapshot', () => { 
+    let wrapper;
+    const movies= [
+      {title: 'Hat'},
+      {title: 'Hat 2'}
+    ]
+  
+    beforeEach(() => {
+      wrapper = shallow(<MovieDetailPage title={'title'}/>)
+    })
 
-  beforeEach(() => {
-    store = mockStore(initialState);
-    wrapper = shallow(<MovieDetailPage store={store}/>)
+    it('should match the snapshot', () => {
+      expect(wrapper).toMatchSnapshot()
+    })
   })
 
-  it('should match the snapshot', () => {
-    expect(wrapper).toMatchSnapshot()
+  describe('Map state to props', () => {
+    let initialState = {
+      movies: [
+        {title: 'Hat'},
+        {title: 'Hat 2'}
+      ],
+    };
+  
+    let wrapper = shallow(<MovieDetailPage initialState={initialState} />)
+    it('should return an array of movies and an array of favorite movies', () => {
+      const mappedProps = mapStateToProps(initialState);
+      expect(mappedProps).toEqual(initialState);
+    });
   })
 })

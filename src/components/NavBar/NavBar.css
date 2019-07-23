@@ -10,11 +10,9 @@
 
 .link {
     /* margin: 20px; */
-    margin: 0 15px 0 5px;
-  
+    margin: 0 15px 0 10px;
     width: 220px;
     height: 35px;
-    background-color: black;;
     color: white;
     text-decoration: none;
     opacity: .5;
@@ -25,6 +23,7 @@
 .headline{
   text-decoration: none;
   color: #E50B13;
+  font-weight: bold;
   /* margin: 20px 5px; */
   font-size: 24px;
 }

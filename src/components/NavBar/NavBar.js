@@ -9,11 +9,11 @@ export const NavBar = (props) => {
     return (
         <nav className="nav-bar">
             {/* <h1 className='headline'>Movie Tracker</h1> */}
-            <NavLink className="headline" to='/'>Movie Tracker</NavLink>
+            <NavLink className="headline" to='/'>MOVIE TRACKER</NavLink>
             <div className='command-buttons'>
-              <NavLink className="link" to='/login'>Login</NavLink>
               <NavLink className="link" to='/create-account'>Create A New Account</NavLink>
-              <NavLink className="link" to='/favorites'>Favorites</NavLink>
+              {props.user.name && <NavLink className="link" to='/favorites'>Favorites</NavLink>}
+              {!props.user.name && <NavLink className="link" to='/login'>Login</NavLink>}
             </div>
             {props.user.name && <button onClick={() => props.signOutUser({})}>Sign out</button>}
         </nav>
