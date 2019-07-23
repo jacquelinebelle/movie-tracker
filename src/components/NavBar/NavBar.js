@@ -15,7 +15,7 @@ export const NavBar = (props) => {
               {props.user.name && <NavLink className="link" to='/favorites'>Favorites</NavLink>}
               {!props.user.name && <NavLink className="link" to='/login'>Login</NavLink>}
             </div>
-            {props.user.name && <button onClick={() => props.signOutUser({})}>Sign out</button>}
+            {props.user.name && <NavLink className="link" onClick={() => props.signOutUser({})}>Sign out</NavLink>}
         </nav>
     )
 }

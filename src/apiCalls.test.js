@@ -1,6 +1,7 @@
 import React from 'react';
 import { fetchMovies, fetchStoreProperties } from './apiCalls';
 
+
 describe('apiCalls', () => {
   describe('fetchMovies', () => {
     let mockMovies;

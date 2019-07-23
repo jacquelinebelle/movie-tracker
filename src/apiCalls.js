@@ -1,6 +1,8 @@
+import { key } from './apiKey'
+
 export const fetchMovies = async () => {
   try {
-    const response = await fetch('http://api.themoviedb.org/3/movie/now_playing?api_key=b6a9c244f525ef1a2fe0110d010ba4aa&language=en-US&include_adult=false&page=1')
+    const response = await fetch(`http://api.themoviedb.org/3/movie/now_playing?api_key=${key}&language=en-US&include_adult=false&page=1`)
     if (!response.ok) {
       throw new Error('Error fetching movies')
     }
