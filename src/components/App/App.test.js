@@ -1,4 +1,5 @@
 import React from 'react';
+import { MemoryRouter } from 'react-router-dom';
 import { App, mapStateToProps, mapDispatchToProps } from './App';
 import { setMovies } from '../../actions';
 import { movieDataCleaner } from './App.helper'
@@ -65,7 +66,6 @@ describe('AppContainer', () => {
     const result = movieDataCleaner(uncleanMovies);
     
     expect(result).toEqual(expected);
-
   });
 
 });
