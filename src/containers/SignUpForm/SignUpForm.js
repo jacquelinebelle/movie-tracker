@@ -5,7 +5,7 @@ import { setLoggedInUser } from '../../actions';
 import CustomForm from '../../components/Shared/CustomForm'
 import './SignUpForm.css';
 
-class SignUpForm extends Component {
+export class SignUpForm extends Component {
     constructor() {
         super();
         this.state = {
@@ -26,7 +26,8 @@ class SignUpForm extends Component {
         const newUser = {
             name: this.state.name,
             email: this.state.email,
-            password: this.state.password
+            password: this.state.password,
+            isLoggedIn: true
         };
         let errorMessage = 'Error adding new user.'
         try {
@@ -84,11 +85,11 @@ class SignUpForm extends Component {
     }
 }
 
-const mapDispatchToProps = dispatch => ({
-    handleSubmit: () => dispatch(this.setState(this.state.isLoggedIn)),
-    setLoggedInUser: (user) => dispatch(setLoggedInUser(user))
+export const mapDispatchToProps = dispatch => ({
+    setLoggedInUser: (user) => dispatch(setLoggedInUser(user)),
+    handleSubmit: (bool) => dispatch(this.setState(bool))
 })
-const mapStateToProps = (state) => ({
+export const mapStateToProps = (state) => ({
     isLoggedIn: state.isLoggedIn
 })
 export default connect(mapStateToProps, mapDispatchToProps)(SignUpForm)

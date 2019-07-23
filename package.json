@@ -5,13 +5,17 @@
   "dependencies": {
     "node-sass": "^4.12.0",
     "react": "^16.8.6",
+    "react-addons-test-utils": "^15.6.2",
     "react-dom": "^16.8.6",
     "react-overdrive": "0.0.10",
     "react-redux": "^7.1.0",
     "react-router-dom": "^5.0.1",
     "react-scripts": "3.0.1",
+    "react-test-renderer": "^16.8.6",
     "redux": "^4.0.4",
-    "redux-devtools-extension": "^2.13.8"
+    "redux-devtools-extension": "^2.13.8",
+    "redux-mock-store": "^1.5.3",
+    "redux-thunk": "^2.3.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -37,5 +41,13 @@
   "devDependencies": {
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.14.0"
-  }
+  },
+
+  "collectCoverageFrom": [
+    "src/**/*.{js,jsx}",
+    "!src/index.js",
+    "!src/setupTest.js",
+    "!src/serviceWorker.js",
+    "!src/reducers/index.js"
+  ]
 }

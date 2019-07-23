@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import MovieCard from '../MovieCard/MovieCard';
 import './MovieGallery.css';
 
-class MovieGallery extends Component {
+export class MovieGallery extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -12,7 +12,7 @@ class MovieGallery extends Component {
       displayFavorites: false
     }
   }
-  
+
   displayMovies = (movies) => {
     return movies.map(movie =>{
       return  <MovieCard 
@@ -38,7 +38,6 @@ class MovieGallery extends Component {
     });
     return this.displayMovies(favoriteObjects)
   }
-
   
   render() {  
     return (
@@ -50,12 +49,12 @@ class MovieGallery extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({
+export const mapStateToProps = (state) => ({
   movies: state.movies,
   favorites: state.favorites
 })
 
-const mapDispatchToProps = (dispatch) => ({
+export const mapDispatchToProps = (dispatch) => ({
   setMovies: (movies) => dispatch( setMovies(movies) )
 })
 
