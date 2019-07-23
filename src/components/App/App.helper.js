@@ -1,4 +1,4 @@
-const movieDataCleaner = (movies) => {
+export const movieDataCleaner = (movies) => {
   return movies.map(movie => {
     return {
       moviePoster: movie.poster_path,
