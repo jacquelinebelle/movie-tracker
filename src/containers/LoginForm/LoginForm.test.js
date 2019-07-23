@@ -2,7 +2,6 @@ import { LoginForm, mapDispatchToProps, mapStateToProps } from './LoginForm';
 import { setLoggedInUser } from '../../actions';
 import React from 'react';
 import { shallow } from 'enzyme';
-import configureStore from 'redux-mock-store';
 
 describe('LoginFormContainer', () => {
     describe('mapStateToProps', () => {
