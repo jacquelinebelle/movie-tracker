@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { setMovies } from '../../actions';
 import { connect } from 'react-redux';
 import MovieCard from '../MovieCard/MovieCard';
+import PropTypes from 'prop-types'
 import './MovieGallery.css';
 
 export class MovieGallery extends Component {
@@ -47,6 +48,10 @@ export class MovieGallery extends Component {
       </div>
     )
   }
+}
+
+MovieGallery.propTyps = {
+  displayFavorites: PropTypes.bool
 }
 
 export const mapStateToProps = (state) => ({
