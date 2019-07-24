@@ -32,7 +32,7 @@ Then, go to http://localhost:3001/ in your browser to see the code running in th
 
 
 ## Screenshots
-![IntroPage](https://github.com/jacquelinebelle/movie-tracker/blob/master/src/images/screenshots/LoginForm.png)
+![IntroPage](https://github.com/jacquelinebelle/movie-tracker/blob/master/src/images/screenshots/MainPage.png)
 
 ![Login](https://github.com/jacquelinebelle/movie-tracker/blob/master/src/images/screenshots/LoginForm.png)
 
