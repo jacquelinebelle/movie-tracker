@@ -32,15 +32,15 @@ Then, go to http://localhost:3001/ in your browser to see the code running in th
 
 
 ## Screenshots
-![Crawll](https://github.com/andreeahanson/lightside/blob/master/src/images/Crawll.png)
+![IntroPage](https://github.com/andreeahanson/lightside/blob/master/src/images/Crawll.png)
 
-![People](https://github.com/andreeahanson/lightside/blob/master/src/images/People.png)
+![Login](https://github.com/andreeahanson/lightside/blob/master/src/images/People.png)
 
-![PeopleFav](https://github.com/andreeahanson/lightside/blob/master/src/images/People-with-favs.png)
+![CreateAccount](https://github.com/andreeahanson/lightside/blob/master/src/images/People-with-favs.png)
 
-![Favorites](https://github.com/andreeahanson/lightside/blob/master/src/images/Favorites-full.png)
+![FavoritedCards](https://github.com/andreeahanson/lightside/blob/master/src/images/Favorites-full.png)
 
-![FavoritesEmpty](https://github.com/andreeahanson/lightside/blob/master/src/images/Favorites-empty.png)
+![Favorites](https://github.com/andreeahanson/lightside/blob/master/src/images/Favorites-empty.png)
 
 ![GIF](https://media.giphy.com/media/kZty7ldVvp8m4Sih2G/200w_d.gif)
 
