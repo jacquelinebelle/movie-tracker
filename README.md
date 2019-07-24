@@ -44,11 +44,10 @@ Then, go to http://localhost:3001/ in your browser to see the code running in th
 ## Learning goals
 
 - Learn how to wireframe and know why it is important.
-- Write squeaky clean, well refactored code using ES6 & ES7 syntax.
+- Learn Redux actions, reducers, store, methods, setup.
 - Make informed design decisions to create a user-friendly application.
 - Keep state based components to a minimum and leverage more functional components.
 - Use a modular architecture for your application file structure.
-- Think deeply about React Lifecycle Methods.
 - Understand and utilize React Router to effectively display data.
 - Use propTypes for every component receiving props.
 
