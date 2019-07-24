@@ -1,6 +1,14 @@
 ## Description
 
+MovieTracker is an application that uses a movies API in order to render the current movies playing in cinemas at this moment. It uses Redux to store the fetched data locally, React on the front end, and Router to turn the app into a multi page one. 
 
+**The main page** renders a collection of movie posters.
+
+**The login page** includes a form where the user can input the name and the password.
+
+**The sign up page** includes a form where the user can create an account by adding the name and password in the inputs and clicks "Submit".
+
+**The movie detail page** displays the title of the selected movie, the rating,and the synopsis.
 
 The app was created using `create-react-app`.
 
@@ -8,7 +16,7 @@ The app was created using `create-react-app`.
 ## Installation
 
 ```
-git clone https://github.com/andreeahanson/lightside.git
+git clone https://github.com/jacquelinebelle/movie-tracker.git
 ```
 Once you have cloned the repo, install the library dependencies. Run:
 
@@ -20,7 +28,7 @@ To view the app in action, run the following command in your terminal:
 ```
 npm start
 ```
-Then, go to http://localhost:3000/ in your browser to see the code running in the browser.
+Then, go to http://localhost:3001/ in your browser to see the code running in the browser.
 
 
 ## Screenshots
