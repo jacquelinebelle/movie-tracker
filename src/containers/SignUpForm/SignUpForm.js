@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { fetchStoreProperties } from '../../apiCalls';
 import { setLoggedInUser } from '../../actions';
 import CustomForm from '../../components/Shared/CustomForm'
+import PropTypes from 'prop-types'
 import './SignUpForm.css';
 
 export class SignUpForm extends Component {
@@ -83,6 +84,11 @@ export class SignUpForm extends Component {
             </section>
         )
     }
+}
+
+SignUpForm.propTyps = {
+  handleSubmit: PropTypes.func,
+  setLoggedInUser: PropTypes.func
 }
 
 export const mapDispatchToProps = dispatch => ({

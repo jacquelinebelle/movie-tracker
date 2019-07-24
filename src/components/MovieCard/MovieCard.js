@@ -7,6 +7,7 @@ import { fetchStoreProperties } from '../../apiCalls';
 import Overdrive from 'react-overdrive';
 import favb from '../../images/fav-b.svg'
 import favy from '../../images/fav-y.svg'
+import PropTypes from 'prop-types'
 import './MovieCard.css';
 
 export class MovieCard extends Component {
@@ -76,6 +77,17 @@ export class MovieCard extends Component {
       </article>
     )
   }
+}
+
+MovieCard.propTyps = {
+  favorite: PropTypes.bool,
+  genres: PropTypes.array,
+  id: PropTypes.number,
+  moviePoster: PropTypes.string,
+  overview: PropTypes.string,
+  releaseDate: PropTypes.string,
+  title: PropTypes.string,
+  voteAverage: PropTypes.number
 }
 
  

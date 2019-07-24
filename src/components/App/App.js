@@ -16,7 +16,6 @@ export class App extends Component {
   
   componentDidMount = async () => {
     let movies = await fetchMovies(); 
-    console.log(movies)
     let cleanMovies = movieDataCleaner(movies)
     this.props.setMovies(cleanMovies);
   }

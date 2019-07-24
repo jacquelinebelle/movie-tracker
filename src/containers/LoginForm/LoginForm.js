@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchStoreProperties } from '../../apiCalls';
 import { setLoggedInUser, getFavorites } from '../../actions';
+import PropTypes from 'prop-types'
 import './LoginForm.scss';
 import CustomForm from '../../components/Shared/CustomForm';
 
@@ -86,6 +87,11 @@ export class LoginForm extends Component {
             </section>
         )
     }
+}
+
+LoginForm.propTyps = {
+  getFavorites: PropTypes.func,
+  setLoggedInUser: PropTypes.func
 }
 
 export const mapStateToProps = state => ({
