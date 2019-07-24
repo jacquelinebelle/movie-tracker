@@ -2,6 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import './MovieDetailPage.css';
 import Overdrive from 'react-overdrive'
+import PropTypes from 'prop-types'
+
 
 
 export const MovieDetailPage = ({ title, releaseDate, synopsis, rating, voteCount, poster, id, key, backdrop}) => {
@@ -27,6 +29,18 @@ export const MovieDetailPage = ({ title, releaseDate, synopsis, rating, voteCoun
         </div>
     )
 }
+
+MovieDetailPage.propTyps = {
+  backdrop: PropTypes.string,
+  id: PropTypes.number,
+  poster: PropTypes.string,
+  rating: PropTypes.number,
+  releaseDate: PropTypes.string,
+  synopsis: PropTypes.string,
+  title: PropTypes.string,
+  voteCount: PropTypes.number
+}
+
 
 export const mapStateToProps = (state) => ({
     movies: state.movies
